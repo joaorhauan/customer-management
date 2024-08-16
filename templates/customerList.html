@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for customer in customers: %}
+            <tr>
+                <th scope="row">{{ customer.id }}</th>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>
+                    <button class="btn btn-primary">See more</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        {% endfor %}
+      
+    </tbody>
+  </table>
