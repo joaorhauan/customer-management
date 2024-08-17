@@ -1,0 +1,36 @@
+{% if customer: %}
+  <h2>Edit Customer - {{customer.name}}</h2>
+{% else: %}
+  <h2>Add new Customer</h2>
+{% endif %}
+<form 
+    class="c-form" 
+    {% if customer: %}
+      action=" {{ url_for('customer.updateCostumer', customerId=customer.id) }} " 
+      method="PUT"
+      c-swap="#customer-{{customer.id}}"
+    {% else: %}
+      action=" {{ url_for('customer.createCostumer') }} " 
+      method="POST"
+      c-append="#customersList"
+    {% endif %}
+    >
+
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" 
+      {% if customer %} value="{{customer.name}}" {% endif %}
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email"
+      {% if customer %} value="{{customer.email}}" {% endif %}
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {% if customer %} Save {% else %} Add {% endif %}
+    </button>
+  </form>

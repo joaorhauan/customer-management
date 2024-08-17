@@ -32,20 +32,38 @@ def createCostumer():
 
 @customersRoute.route('/new')
 def customerForm():
-    return render_template('newCustomerForm.html')
+    return render_template('customerForm.html')
 
 @customersRoute.route('/<int:customerId>') 
 def getCustomer(customerId):
-    return render_template('specificCustomer.html')
+    customer = None
+    for c in CUSTOMERS:
+        if c['id'] == customerId:
+            customer = c
+    return render_template('specificCustomer.html', customer=customer)
 
 @customersRoute.route('/<int:customerId>/edit') 
-def costumerEditForm(customerId):
-    return render_template('editCustomerForm.html')
+def customerEditForm(customerId):
+    customer = None
+    for c in CUSTOMERS:
+        if c['id'] == customerId:
+            customer = c
+    return render_template('customerForm.html', customer=customer)
 
 @customersRoute.route('/<int:customerId>/update', methods=['PUT']) 
 def updateCostumer(customerId):
-    pass
+    data = request.json
+    print(data)
+    customer = None
+    for c in CUSTOMERS:
+        if c['id'] == customerId:
+            c['name'] = data['name']
+            c['email'] = data['email']
+            customer = c
+    return render_template('customerItem.html', customer=customer)
 
 @customersRoute.route('/<int:customerId>/delete', methods=['DELETE']) 
-def deleteCostumer(customerId):
-    pass
+def deleteCustomer(customerId):
+    global CUSTOMERS
+    CUSTOMERS = [c for c in CUSTOMERS if c['id'] != customerId]
+    return {'delete': 'ok'}
