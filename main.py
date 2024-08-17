@@ -1,10 +1,10 @@
 from flask import Flask
 from routes.home import homeRoute
-from routes.customer import customerRoute
+from routes.customers import customersRoute
 
 app = Flask(__name__)
 
 app.register_blueprint(homeRoute)
-app.register_blueprint(customerRoute, url_prefix='/customer')
+app.register_blueprint(customersRoute, url_prefix='/customers')
 
 app.run(debug=True)

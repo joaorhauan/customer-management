@@ -1,0 +1,18 @@
+<h2>Customers List</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody id="customersList">
+
+        {% for customer in customers: %}
+            {% include 'customerItem.html' %}
+        {% endfor %}
+      
+    </tbody>
+  </table>

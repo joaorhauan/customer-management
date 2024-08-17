@@ -1,0 +1,20 @@
+<h2>Add new Customer</h2>
+<form 
+    class="c-form" 
+    action=" {{ url_for('customer.createCostumer') }} " 
+    method="POST"
+    c-append="#customersList"
+    >
+
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name">
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
