@@ -1,10 +1,8 @@
 from flask import Flask
-from routes.home import homeRoute
-from routes.customers import customersRoute
+from configuration import allConfig
 
 app = Flask(__name__)
 
-app.register_blueprint(homeRoute)
-app.register_blueprint(customersRoute, url_prefix='/customers')
+allConfig(app)
 
 app.run(debug=True)
